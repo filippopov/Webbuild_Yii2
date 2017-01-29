@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <div class="container">
+    <div class="container" id="profile">
         <h1>User Profile Data</h1>
         <p><strong>Email: </strong><?php echo $user->email?></p>
         <p><strong>Full Name: </strong><?php echo $user->full_name?></p>
