@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -25,6 +26,10 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<?php
+$userEmail = Yii::$app->user->isGuest ? '' : User::find()->where(['id' => Yii::$app->user->identity->getId()])->one()->email;
+?>
+
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -46,7 +51,7 @@ AppAsset::register($this);
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout (' . $userEmail . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

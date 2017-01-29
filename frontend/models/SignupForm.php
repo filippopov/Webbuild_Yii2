@@ -9,7 +9,6 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $username;
     public $email;
     public $password;
     public $full_name;
@@ -23,13 +22,9 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
             ['full_name', 'required'],
             ['city', 'required'],
             ['phone_number', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -57,7 +52,6 @@ class SignupForm extends Model
         $user->full_name = $this->full_name;
         $user->city = $this->city;
         $user->phone_number = $this->phone_number;
-        $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
